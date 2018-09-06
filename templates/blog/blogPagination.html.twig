@@ -1,0 +1,36 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog List Paginated{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>BlogList Paginated ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        {% for k,blog in blogPaginated%}
+            <li >
+                <a href="{{path('blog_paginated', {'page' : k})}}">Page : {{blog}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for k in blogList|keys%}
+            <li style="list-style: none;float:left; padding-right: 7px;">
+                <a href="{{path('blog_paginated', {'page' : k})}}">Page : {{k}}</a>
+            </li>
+        {% endfor %}
+        
+        <!--
+        <li>Your controller at <code><a href="{#{{ 'src/Controller/BlogController.php'|file_link(0) }}#}">src/Controller/BlogController.php</a></code></li>
+        <li>Your template at <code><a href="{#{{ 'templates/blog/index.html.twig'|file_link(0) }}#}">templates/blog/index.html.twig</a></code></li>
+        -->
+    </ul>
+</div>
+{% endblock %}
