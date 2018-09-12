@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User List{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .odd{background-color: #b3b3cc}
+    .even{background-color: #f0f0f5}
+</style>
+
+<div class="example-wrapper">
+    <h1>User List ✅</h1>
+
+    <table border="1">
+        <tr>
+            <th>N°</th>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Creation Date</th>
+            <th>Last Login Date</th>
+            <th>Is Logged</th>
+        </tr>
+        {%for user in userList%}
+            {% set class = loop.index is even ? "even" : "odd"%}
+            <tr>
+                <td class="{{class}}">{{loop.index}}</td>
+                <td class="{{class}}">{{user.id}}</td>
+                <td class="{{class}}">{{user.firstName}}</td>
+                <td class="{{class}}">{{user.lastName}}</td>
+                <td class="{{class}}">{{user.creationDate.format("d-m-Y H:i:s")}}</td>
+                <td class="{{class}}">{{user.lastLogginDate.format("d-m-Y H:i:s")}}</td>
+                <td class="{{class}}">{{user.isLogged == 1 ? "Connected" : "Not connected"}}</td>
+            </tr>
+        {%endfor%}
+            
+    </table>
+</div>
+{% endblock %}
